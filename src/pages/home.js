@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
-import {View , Text, StyleSheet, TextInput, Platform, TouchableOpacity} from 'react-native';
+import {View , Text, StyleSheet, TextInput, Platform,FlatList} from 'react-native';
+import Button from '../components/button';
+import SkillCard from '../components/SkillCard';
 
 export default function Home(){
     const [newSkill, setNewSkill] = useState('');
@@ -20,30 +22,19 @@ export default function Home(){
             placeholderTextColor = "#555"
             onChangeText = {setNewSkill}
         />
-        <TouchableOpacity 
-            style ={styles.button}
-            onPress = {handleAddNewSkill}
-            activeOpacity = {.65}
-        >
-            <Text style = {styles.buttonText}>Adicionar</Text>
-        </TouchableOpacity>
+       
+        <Button onPress = {handleAddNewSkill}/>
 
 
         <Text style = {[styles.title,{marginTop: 30}]}>Minha lista:</Text>
 
-        {
-            mySkills.map(skill =>(
+        <FlatList 
+            data = {mySkills}
+            keyExtractor = {item => item}
+            renderItem = {({item}) => ( 
+                <SkillCard skill = {item}/>) }
+        />
 
-            <TouchableOpacity
-            style ={styles.buttonSkill}
-            key = {skill}
-
-            >
-                <Text style = {styles.skill}> {skill}</Text>
-            </TouchableOpacity>
-            ))
-
-        }
 
       </View>
   )
@@ -70,31 +61,5 @@ const styles = StyleSheet.create({
         padding: 15,
         marginTop: 30,
         borderRadius: 8
-    },
-    button:{
-        backgroundColor: '#A370F7',
-        padding: 15,
-        borderRadius:7,
-        alignItems: 'center',
-        marginTop: 20
-    },
-    buttonText:{
-        color: '#fafafa',
-        fontSize: 18,
-        fontWeight: 'bold'
-
-    },
-    buttonSkill:{
-        backgroundColor: '#1F1E25',
-        padding: 15,
-        marginTop : 10,
-        borderRadius: 20,
-        alignItems: 'center'
-    },
-    skill:{
-        color: '#fafafa',
-        fontSize: 18,
-        fontWeight: 'bold'
-
     }
 });
