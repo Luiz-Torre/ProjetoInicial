@@ -7,7 +7,7 @@ export default function Home(){
 
 
     function handleAddNewSkill(){
-        
+        setMySkills(oldState => [...oldState, newSkill]);
     }
 
 
@@ -22,6 +22,7 @@ export default function Home(){
         />
         <TouchableOpacity 
             style ={styles.button}
+            onPress = {handleAddNewSkill}
             activeOpacity = {.65}
         >
             <Text style = {styles.buttonText}>Adicionar</Text>
@@ -30,11 +31,19 @@ export default function Home(){
 
         <Text style = {[styles.title,{marginTop: 30}]}>Minha lista:</Text>
 
-        <TouchableOpacity
+        {
+            mySkills.map(skill =>(
+
+            <TouchableOpacity
             style ={styles.buttonSkill}
-        >
-        <Text style = {styles.skill}> teste{newSkill}</Text>
-        </TouchableOpacity>
+            key = {skill}
+
+            >
+                <Text style = {styles.skill}> {skill}</Text>
+            </TouchableOpacity>
+            ))
+
+        }
 
       </View>
   )
