@@ -29,7 +29,6 @@ export default function Home(){
     },[gretting])
     return(
       <View style={styles.container}>
-        <StatusBar barStyle="light-content"/>
         <Text style = {styles.title}>Olá, Luiz. Seja bem Vindo!! :)</Text>
         
         <Text style = {styles.greetings}>{gretting}</Text>
