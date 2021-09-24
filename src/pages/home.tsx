@@ -51,7 +51,10 @@ export default function Home(){
             onChangeText = {setNewSkill}
         />
        
-        <Button onPress = {handleAddNewSkill}/>
+        <Button
+            onPress = {handleAddNewSkill}
+            title = 'Adicionar'
+        />
 
 
         <Text style = {[styles.title,{marginTop: 30}]}>Minha lista:</Text>
